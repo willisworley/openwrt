@@ -260,8 +260,9 @@ chmod +x /usr/sbin/myaliddns
 echo "#!/bin/bash
 echo \"config core 'main'
         option resourcebase '/luci-static/resources'
-        option mediaurlbase '/luci-static/argon'
+        option mediaurlbase '/luci-static/infinityfreedom'
         option lang 'en'
+
 config extern 'flash_keep'
         option uci '/etc/config/'
         option dropbear '/etc/dropbear/'
@@ -270,15 +271,20 @@ config extern 'flash_keep'
         option opkg '/etc/opkg.conf'
         option firewall '/etc/firewall.user'
         option uploads '/lib/uci/upload/'
+
 config internal 'languages'
         option en 'English'
+
 config internal 'sauth'
         option sessionpath '/tmp/luci-sessions'
         option sessiontime '3600'
+
 config internal 'ccache'
         option enable '1'
+
 config internal 'themes'
-        option Argon '/luci-static/argon'
+        option infinityfreedom '/luci-static/infinityfreedom'
+
 config internal 'diag'
         option dns 'openwrt.org'
         option ping 'openwrt.org'
