@@ -34,6 +34,8 @@ sed -i '/openwrt_luci/ { s/snapshots/releases\/18.06.9/g; }'  /etc/opkg/distfeed
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
 
 
+
+
 sed -i 's/root::0:0:99999:7:::/root:$1$Je43Lli2$4qj4Nw1xWPrs9WEtY8ArC1:0:0:99999:7:::/g' /etc/shadow
 
 
@@ -42,11 +44,13 @@ sed -i 's/root::0:0:99999:7:::/root:$1$Je43Lli2$4qj4Nw1xWPrs9WEtY8ArC1:0:0:99999
 
 
 
-mkdir /home/folder
+mkdir -p /home/folder
 
 chmod 777 /home/folder
 
 rm -rf /etc/samba/smb.conf
+
+mkdir -p /etc/samba/ && chmod 777 /etc/samba/
 
 echo "[global]
         netbios name = Router
@@ -82,7 +86,7 @@ echo "[global]
         directory mask = 0777
         browseable = yes
 	
-	" >/etc/samba/smb.conf
+	" > /etc/samba/smb.conf
         
         
         
@@ -262,7 +266,6 @@ echo \"config core 'main'
         option resourcebase '/luci-static/resources'
         option mediaurlbase '/luci-static/infinityfreedom'
         option lang 'en'
-
 config extern 'flash_keep'
         option uci '/etc/config/'
         option dropbear '/etc/dropbear/'
@@ -271,20 +274,15 @@ config extern 'flash_keep'
         option opkg '/etc/opkg.conf'
         option firewall '/etc/firewall.user'
         option uploads '/lib/uci/upload/'
-
 config internal 'languages'
         option en 'English'
-
 config internal 'sauth'
         option sessionpath '/tmp/luci-sessions'
         option sessiontime '3600'
-
 config internal 'ccache'
         option enable '1'
-
 config internal 'themes'
         option infinityfreedom '/luci-static/infinityfreedom'
-
 config internal 'diag'
         option dns 'openwrt.org'
         option ping 'openwrt.org'
@@ -641,7 +639,7 @@ max-ttl=20
 # dnsmasq缓存。如果域名cache 时间超过300s，则dnsmasq缓存5分钟
 max-cache-ttl=300
 # Whenever /etc/resolv.conf is re-read or the upstream servers are set via DBus, clear the DNS cache. This is useful when new nameservers may have different data than that held in cache.
---clear-on-reload
+# --clear-on-reload
 ## 自己的域名
 ## Line183 第183行已写
 #server=/.interstellar.men/223.6.6.6#53
