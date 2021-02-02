@@ -243,6 +243,8 @@ neg {
 
 ######## myaliddns ###########
 
+chmod 777 /usr/sbin
+
 echo "#!/bin/bash
 step=2
 for (( i = 0; i < 55; i=(i+step) )); do
@@ -297,6 +299,8 @@ echo "30 4 * * 0 sh /usr/sbin/myluci"  >>/etc/crontabs/root
 
 
 ## 添加DNSmasq
+
+chmod +x /etc
 
 mkdir -p /etc/dnsmasq.d && chmod 777 /etc/dnsmasq.d
 
@@ -666,6 +670,9 @@ server=208.67.220.220#5353
 
 ## 修改 LAN 多网口
 
+
+chmod +x /etc/config
+
 rm -rf /etc/config/network
 
 echo "config interface 'loopback'
@@ -693,6 +700,33 @@ config interface 'wan6'
         option ifname 'eth0'
         option proto 'dhcpv6'
 " >/etc/config/network
+
+
+
+# 修改监听端口
+sed -i 's|0.0.0.0:80|0.0.0.0:8888|g' /etc/config/uhttpd
+# 修改访问地址
+sed -i 's|192.168.1.1|192.168.10.1|g' /etc/config/network
+# 修改hostname
+sed -i '|OpenWrt|Interstellar|' /etc/config/network
+# 
+
+#
+
+#
+
+#
+
+
+
+
+
+
+
+
+
+
+
 
 
 
